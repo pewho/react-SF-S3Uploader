@@ -1,0 +1,82 @@
+.pure-button {
+  background-image: none;
+  font-weight: normal;
+  margin:5px 10px;
+}
+.return {
+  margin-left:1em;
+  
+}
+.return > button {
+  margin-left: 1em;
+}
+
+.button-container {
+  height:100%;
+  background-color: #FAFAFA;
+  vertical-align: middle;
+  margin:1em;
+}
+.button-container input {
+  margin-left: 1em;
+}
+
+.app-component {
+	margin-right: 2em;
+	margin-left: 2em;
+}
+div.meter-container {
+  font-size: 0.7em;
+  margin: 1em;
+}
+div.meter-info {
+   margin-left: 15px;
+}
+div.meter {  
+  height: 5px;
+  position: relative;
+	background: #555;
+  padding: 1px;
+}
+
+div.meter > span {
+  display: block;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  background-color: #64ACF9;
+  background-image: -webkit-gradient(
+    linear,
+    right top,
+    left top,
+    color-stop(0.34, #64ACF9),
+    color-stop(1, #4875CF)
+  );
+  background-image: -o-linear-gradient(left, #64ACF9 34%, #4875CF 100%);
+  background-image: -moz-linear-gradient(left, #64ACF9 34%, #4875CF 100%);
+  background-image: -webkit-linear-gradient(left, #64ACF9 34%, #4875CF 100%);
+  background-image: -ms-linear-gradient(left, #64ACF9 34%, #4875CF 100%);
+  background-image: linear-gradient(to left, #64ACF9 34%, #4875CF 100%);
+}
+div.l-box {
+  margin:1em;
+  background-color: #FAFAFA;
+}
+div.l-box > div {
+  margin: 0.3em auto;
+  padding:0;
+  text-align: center;
+}
+div.l-box p {
+  margin: 0;
+}
+p.l-iconic {
+  margin: 0.05em auto;
+  font-size: 1.2em;
+  font-variant: small-caps;
+  font-weight: 800;
+
+}
+button.button-small {
+  font-size: 70%;
+}
