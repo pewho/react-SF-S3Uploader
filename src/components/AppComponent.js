@@ -14,6 +14,12 @@ var AppComponent = React.createClass({
 		console.log(err);
 	},
 	render: function() {
+		var uploadElement = <span></span>;
+		console.log(vfConf);
+		if (vfConf !== undefined && vfConf.appName !== 'NEURONAUTE'){
+			uploadElement = <UploadComponent />;
+		}
+		
 		return (
 			<div className="app-component">
 				<div className="pure-g">
@@ -22,7 +28,7 @@ var AppComponent = React.createClass({
 					</div>
 				</div>
 				<LinksComponent />
-				<UploadComponent />
+				{ uploadElement }
 			</div>
 		);
 	},
