@@ -15,7 +15,7 @@ var AppComponent = React.createClass({
 	},
 	render: function() {
 		var uploadElement = <span></span>;
-		console.log(vfConf);
+
 		if (vfConf !== undefined && vfConf.appName !== 'NEURONAUTE'){
 			uploadElement = <UploadComponent />;
 		}
