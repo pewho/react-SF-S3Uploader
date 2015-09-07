@@ -62,6 +62,13 @@ div.l-box {
   margin:1em;
   background-color: #FAFAFA;
 }
+div.l-box-error {
+  margin:1em;
+  padding: 1em;
+  color: ##a94442;
+  border: 1px solid #D9534F;
+  background-color: #f2dede;
+}
 div.l-box > div {
   margin: 0.3em auto;
   padding:0;
