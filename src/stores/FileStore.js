@@ -10,12 +10,29 @@ var VFConf = require('../api/api');
 
 var Files = [];
 
-AWS.config.region = AWSConstants.aws_region;
-AWS.config.credentials = new AWS.WebIdentityCredentials({
-	RoleArn: AWSConstants.aws_arn,
-	WebIdentityToken: VFConf.openId,
-	DurationSeconds:3600
+var FileStore = assign({}, EventEmitter.prototype, {
+	getFiles: function() {
+		return Files;
+	},
+	initStore: function(){
+		refreshBucket();
+	}
 });
+
+AWS.config.region = AWSConstants.aws_region;
+
+if (VFConf.AWSCredentials) {
+	AWS.config.credentials = new AWS.Credentials(VFConf.AWSCredentials);
+	console.log('Use AWS Credentials...');
+} else if (VFConf.openId) {
+	AWS.config.credentials = new AWS.WebIdentityCredentials({
+		RoleArn: AWSConstants.aws_arn,
+		WebIdentityToken: VFConf.openId,
+		DurationSeconds:3600
+	});
+	console.log('Use OpenId connect Credentials...');
+}
+
 
 var s3 = new AWS.S3({
 	params: {
@@ -27,7 +44,7 @@ function refreshBucket() {
 	console.log('Refresh...');
 	s3.listObjects(
 		{
-			Prefix: VFConf.recordName + '/'
+			Prefix: 'record' + VFConf.recordName + '/'
 		},
 		function(err, data){
 			if (err) {
@@ -42,7 +59,7 @@ function refreshBucket() {
 }
 
 function uploadFile(file) {
-	var keyName = VFConf.recordName + '/' + file.name;
+	var keyName = 'record' + VFConf.recordName + '/' + file.name;
 	var params = {
 		Key: keyName,
 		ContentType: file.type,
@@ -51,7 +68,7 @@ function uploadFile(file) {
 	var options = {partSize: 5 * 1024 * 1024, queueSize: 1};
 	s3.upload(params, options).
 		on(
-			'httpUploadProgress', 
+			'httpUploadProgress',
 			function(event) {
 				FileStore.emit('PROGRESS_UPDATE', event);
 			}
@@ -65,7 +82,7 @@ function uploadFile(file) {
 			}
 		}
 	);
-	
+
 }
 
 function getUrl(file) {
@@ -77,7 +94,7 @@ function getUrl(file) {
 			break;
 		}
 	}
-	
+
 	if (!storeFile){
 		console.log('unknown file', file);
 		return;
@@ -96,15 +113,6 @@ function getUrl(file) {
 		}
 	);
 }
-
-var FileStore = assign({}, EventEmitter.prototype, {
-	getFiles: function() {
-		return Files;
-	},
-	initStore: function(){
-		refreshBucket();
-	}
-});
 
 AppDispatcher.register(function(action) {
 	switch(action.actionType) {
