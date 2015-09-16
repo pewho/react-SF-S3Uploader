@@ -16,7 +16,6 @@ var AppComponent = React.createClass({
 		FileStore.initStore();
 	},
 	logError: function(err){
-		console.log(err);
 		this.setState({
 			errorMsg: err
 		});
@@ -39,16 +38,9 @@ var AppComponent = React.createClass({
 					</div>
 				</div>
 			);
-			console.log(mainElement);
 		} else {
 			mainElement = (
 				<div className="app-component">
-					<div className="pure-g">
-						<div className="pure-u-1 button-container">
-							<button className="pure-button" id="return-to-record" onClick = {this.returnRecord}>&lt; Return to Record</button>
-						</div>
-					</div>
-
 					<LinksComponent />
 
 					{ uploadElement }

@@ -48,7 +48,6 @@ function refreshBucket() {
 		},
 		function(err, data){
 			if (err) {
-				console.log(err);
 				FileStore.emit('ERROR', err);
 			} else {
 				Files = data.Contents;
