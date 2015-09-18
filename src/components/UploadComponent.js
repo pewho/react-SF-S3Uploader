@@ -26,7 +26,7 @@ var UploadComponent = React.createClass({
 			<div className="pure-g pure-form">
 				<div className="pure-u-1 button-container">
 					<input onChange={ this.onChangeInput } type="file" id="file-chooser" />
-					<button className="pure-button pure-button-primary" id="upload-button" onClick={ this.clickButton }>Upload to S3</button>
+					<button className="pure-button pure-button-primary" id="upload-button" onClick={ this.clickButton }>Upload</button>
 					{ bar }	
 				</div>
 			</div>
